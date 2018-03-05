@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.psql.project.ctor.CreatorMapper">
+	<select id="getVideoList" parameterType="Integer" resultType="com.psql.project.vo.VideoDTO">
+		select  
+				VIDEO_SQ_PK,
+				CHANNEL_SQ_FK,
+				VIMEO_KEY,
+			   LICENSE,
+			   STEP,
+			   CATEGORY,
+			   VIDEO_NM,
+			   VIDEO_TAG,
+			   VIDEO_LANG,
+			   VIDEO_DESC,
+			   VIDEO_HIDE,
+			   VIDEO_ADULT_CTS,
+			   VIDEO_DT
+		from video_tb
+		order by video_dt desc
+		limit 20 offset 20*(#{page}-1);
+	</select>
+</mapper>

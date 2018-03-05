@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.psql.project.vimeo.VimeoMapper">
+	<insert id="insertVideo" parameterType="com.psql.project.vo.UploadVideoVO">
+		insert into
+		VIDEO_TB(
+			CHANNEL_SQ_FK,
+			VIMEO_KEY,
+			STEP,
+			VIDEO_NM,
+			VIDEO_DESC,
+			VIDEO_HIDE
+		)
+		values(
+			#{CHANNEL_SQ_FK}, 
+			#{VIMEO_KEY}, 
+			#{STEP},
+			#{VIDEO_NM, jdbcType=VARCHAR},
+			#{VIDEO_DESC, jdbcType=VARCHAR}, 
+			#{VIDEO_HIDE, jdbcType=BOOLEAN}
+		)
+	</insert>
+</mapper>

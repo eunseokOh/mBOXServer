@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.psql.project.user.UserMapper">
+
+	<resultMap type="com.psql.project.vo.UserDTO" id="userDTO">
+		<id column="USER_SQ_PK" property="userSqPk" />
+		<result column="USER_ID" property="userId" />
+		<result column="USER_NM" property="userName" />
+		<result column="USER_ST" property="userState" />
+		<result column="EMAIL" property="userEmail" />
+		<result column="PHONE" property="userPhone" />
+		<result column="NATION" property="userNation" />
+		<result column="ACNT_NM" property="userAccountName" />
+		<result column="ACNT_NO" property="userAccountNumber" />
+		<result column="ACNT_HOLDER" property="userAccountHolder" />
+		<result column="GENDER" property="userGender" />
+		<result column="USER_JOIN_DT" property="userJoinDate"  />
+	</resultMap>
+	
+	
+	<insert id="addUser" parameterType="com.psql.project.vo.UserDTO">
+	
+		insert into
+		USER_TB(
+			USER_ID ,
+			USER_NM ,
+			<if test="userState != null">
+			USER_ST ,
+			</if>
+			EMAIL ,
+			PHONE ,
+			NATION ,
+			ACNT_NM ,
+			ACNT_NO ,
+			ACNT_HOLDER
+			<if test="userGender != null">
+			, GENDER 
+			</if>
+			
+		)
+		values(
+			#{ userId },
+			#{ userName },
+			<if test="userState != null">
+			#{ userState, jdbcType=VARCHAR},
+			</if>
+			#{ userEmail },
+			#{ userPhone },
+			#{ userNation },
+			#{ userAccountName },
+			#{ userAccountNumber },
+			#{ userAccountHolder }
+			<if test="userGender != null">
+			, #{ userGender, jdbcType=CHAR }
+			</if>
+			
+		)
+	</insert>
+	
+	<select id="testUser" resultType="int">
+		insert into tt_tb(name)
+		values('eunseok')
+		RETURNING my_sq_pk
+	</select>
+
+	
+
+</mapper>
