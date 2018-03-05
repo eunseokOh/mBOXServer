@@ -54,7 +54,7 @@ public class VimeoController {
 	@PostConstruct
 	public void init() {
 		executorServie = Executors.newFixedThreadPool(MAX_THREAD);
-		token = "ec1b955b82211cb32ed8902c44c5c0a8";
+		token = "<vimeo token>";
 		vimeo = new Vimeo(token);
 		videoDTO = new VideoDTO();
 	}
